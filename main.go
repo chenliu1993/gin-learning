@@ -2,9 +2,6 @@ package main
 
 import (
 	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 
 	v1 "github.com/chenliu1993/gin-learning/api/v1"
 	"github.com/gin-gonic/gin"
@@ -12,8 +9,8 @@ import (
 
 func main() {
 	// Fake a gracefully exit
-	stopCh := make(chan os.Signal)
-	signal.Notify(stopCh, syscall.SIGINT)
+	/* stopCh := make(chan os.Signal)
+	signal.Notify(stopCh, syscall.SIGINT) */
 	// Init a sample engine
 	r := gin.New()
 	r.Use(gin.Logger())
@@ -21,8 +18,9 @@ func main() {
 
 	// Simply register a router
 	apiv1 := r.Group("/api/v1")
+	r.Use(v1.Intercept)
 	{
-		apiv1.GET("/hello", v1.EchoHello)
+		apiv1.POST("/hello", v1.EchoHello)
 	}
 	gin.SetMode("debug")
 	server := &http.Server{
@@ -32,6 +30,6 @@ func main() {
 
 	server.ListenAndServe()
 
-	<-stopCh
+	// <-stopCh
 
 }
