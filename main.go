@@ -24,7 +24,7 @@ func main() {
 	{
 		apiv1.GET("/hello", v1.EchoHello)
 	}
-	gin.SetMode("DEBUG")
+	gin.SetMode("debug")
 	server := &http.Server{
 		Addr:    "127.0.0.1:9090",
 		Handler: r,
