@@ -3,7 +3,7 @@ package v1
 import (
 	"fmt"
 
-	"github.com/chenliu1993/go-learning/pkg/constant"
+	"github.com/chenliu1993/gin-learning/pkg/constant"
 	"github.com/gin-gonic/gin"
 )
 

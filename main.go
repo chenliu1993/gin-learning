@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	v1 "github.com/chenliu1993/gin-learning/api/v1"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,7 +22,7 @@ func main() {
 	// Simply register a router
 	apiv1 := r.Group("/api/v1")
 	{
-		apiv1.GET("/hello", v1.HelloWorld)
+		apiv1.GET("/hello", v1.EchoHello)
 	}
 	gin.SetMode("DEBUG")
 	server := &http.Server{
